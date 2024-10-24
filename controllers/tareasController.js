@@ -51,9 +51,58 @@ async function updateTarea(req, res) {
 }
 
 async function createTarea(req, res) {
-    const newTarea = await tareaModel.createTarea(req.body);
-    res.status(201).json(newTarea);
+    const { apikey, name, description, startDate, endDate, status } = req.body;
+
+    // Validaciones básicas
+    if (!apikey) {
+        return res.status(400).json({
+            code: 400,
+            message: 'Se requiere el apikey.'
+        });
+    }
+    if (!name || typeof name !== 'string' || name.trim() === '') {
+        return res.status(400).json({
+            code: 400,
+            message: 'El nombre de la tarea es obligatorio y debe ser una cadena no vacía.'
+        });
+    }
+    if (!description || typeof description !== 'string' || description.trim() === '') {
+        return res.status(400).json({
+            code: 400,
+            message: 'La descripción de la tarea es obligatoria y debe ser una cadena no vacía.'
+        });
+    }
+    if (!startDate || !endDate) {
+        return res.status(400).json({
+            code: 400,
+            message: 'Las fechas de inicio y fin son obligatorias.'
+        });
+    }
+    if (new Date(startDate) >= new Date(endDate)) {
+        return res.status(400).json({
+            code: 400,
+            message: 'La fecha de inicio debe ser anterior a la fecha de finalización.'
+        });
+    }
+    if (!status || typeof status !== 'string' || status.trim() === '') {
+        return res.status(400).json({
+            code: 400,
+            message: 'El estado de la tarea es obligatorio y debe ser una cadena no vacía.'
+        });
+    }
+
+    try {
+        const newTarea = await tareaModel.createTarea(req.body);
+        return res.status(201).json(newTarea);
+    } catch (error) {
+        console.error("Error al crear la tarea:", error);
+        return res.status(500).json({
+            code: 500,
+            message: 'Error al crear la tarea.'
+        });
+    }
 }
+
 
 async function marcarTareaComoTerminada(req, res) {
     const { apikey } = req.body; // Obtiene el apikey del cuerpo de la solicitud

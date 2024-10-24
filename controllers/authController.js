@@ -22,7 +22,7 @@ async function login(req, res) {
         if (!user) {
             return res.status(401).json({
                 code: 401,
-                message: 'A ese no lo conocen ni en su casa.'
+                message: 'Usuario no encontrado'
             });
         }
 
@@ -31,7 +31,7 @@ async function login(req, res) {
         if (!isPasswordCorrect) {
             return res.status(401).json({
                 code: 401,
-                message: '¿Apoco no te sabes tu contraseña, karnal?'
+                message: 'Contraseña incorrecta'
             });
         }
 
@@ -45,7 +45,7 @@ async function login(req, res) {
         // Respuesta con éxito y el token generado
         return res.json({
             code: 200,
-            message: 'Hasta que le atinaste.',
+            message: 'Datos correctos, sesión iniciada.',
             token
         });
 
