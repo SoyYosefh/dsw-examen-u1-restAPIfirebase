@@ -81,7 +81,7 @@ const router = express.Router();
  *                   example: 401
  *                 message:
  *                   type: string
- *                   example: "Usuario no encontrado"  // o "Contraseña incorrecta"
+ *                   example: "Usuario no encontrado"  
  *       500:
  *         description: Error interno del servidor
  *         content:
