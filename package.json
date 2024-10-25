@@ -1,9 +1,17 @@
 {
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "chai": "4.2.0",
     "express": "^4.21.0",
     "firebase": "^10.14.0",
     "jsonwebtoken": "^9.0.2",
+    "mocha": "^10.7.3",
+    "sinon": "^19.0.2",
+    "supertest": "^7.0.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "uuid": "^10.0.0"

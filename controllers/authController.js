@@ -46,7 +46,8 @@ async function login(req, res) {
         return res.json({
             code: 200,
             message: 'Datos correctos, sesión iniciada.',
-            token
+            token,
+            user
         });
 
     } catch (error) {

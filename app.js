@@ -22,9 +22,4 @@ app.use((req, res) => {
     res.status(404).json({ code: 404, message: "Pagina no encontrada." });
 });
 
-const PORT = 3000;
-
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
-    console.log(`📚 Documentacion disponible en: http://localhost:${PORT}/api-docs`);
-});
+module.exports = app; // Exporta solo la aplicación Express sin levantar el servidor
